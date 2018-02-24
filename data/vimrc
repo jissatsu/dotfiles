@@ -1,0 +1,104 @@
+syntax on
+set nocompatible
+filetype off
+set runtimepath+=~/.vim/bundle/Vundle.vim
+"set statusline=File:\ %.20F\ \/\ \Type:\ \%y\ \ %=Current\ Line:\ %l\/\%-8L
+let &number = 1                                                    
+set numberwidth=3                                                  
+set encoding=utf-8                                                 
+set fileencoding=utf-8                                             
+set fileencodings=utf-8                                            
+set tabstop=4                                                      
+set autoread                                                                                                      
+set t_Co=256
+set hidden 
+set ic
+
+
+call vundle#begin()
+
+Plugin 'Vundle.vim'
+
+"qkiq airline
+Plugin 'bundle/vim-airline'
+
+"awesome airline theme
+Plugin 'bundle/vim-airline-themes'
+let g:airline_theme='base16_atelierlakeside'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+
+Plugin 'colors'
+colorscheme deus
+
+call vundle#end()
+filetype plugin indent on
+
+" the 'mappings etc'{{{{
+let mapleader = "-"
+let maplocalleader = "-"
+nnoremap <Leader>v :wincmd H<cr>
+nnoremap <Leader>h :wincmd J<cr>
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <F3> <Esc>:q<cr> 
+inoremap <F2> <Esc>:w<cr>
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+nnoremap <Leader>m :messages<cr>
+nnoremap <Leader>qq :bwipeout<cr>
+
+
+"tabs
+map <c-Left> :tabp<cr>
+map <c-Right> :tabn<cr>
+map <c-c> :tabclose<cr>
+
+function! Folda()
+	let path = split(expand('%:p'), '/')
+	return path[len(path) - 1]
+endfunction
+
+if Folda() == '.vimrc' | nnoremap <Leader>z za | endif
+
+"}}}}
+
+" abbreviations {{{{
+
+iabbrev improt  import
+iabbrev impotr import
+iabbrev portected protected
+iabbrev protecedt protected
+
+"}}}}
+
+" autocommands {{{{
+
+augroup pyJsPhpHtmlCss
+	autocmd!
+	autocmd FileType python nnoremap <buffer> <LocalLeader>cl I#<Esc>
+	autocmd FileType javascript nnoremap <buffer> <LocalLeader>cl I//<Esc> 
+	autocmd FileType php nnoremap <buffer> <LocalLeader>cl I//<Esc>
+	autocmd FileType html nnoremap <buffer> <LocalLeader>cl I<!--<Esc>$a--><Esc>
+	autocmd FileType html :iabbrev <h <!DOCTYPE html><cr><html><cr></html><Up><cr><head><cr></head><Up><cr><cr><Up><cr><body><cr></body><Up><cr>
+	autocmd FileType javascript,php :iabbrev fu function(){}<Left><cr><BS>
+	autocmd FileType javascript :iabbrev gi document.getElementById()<Left>
+	autocmd FileType javascript :iabbrev gc document.getElementsByClassName()<Left>	
+	autocmd FileType javascript :iabbrev do document.
+	autocmd FileType html :iabbrev <di <div></div><cr>
+	autocmd FileType php :iabbrev <h <!DOCTYPE html><cr><html><cr></html><Up><cr><head><cr></head><Up><cr><cr><Up><cr><body><cr></body><Up><cr>
+augroup END
+
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" }}}}
+
+" highlightings {{{{
+
+highlight Normal ctermbg=233
+hi statusLine cterm=bold ctermfg=24 ctermbg=0 "135
+hi LineNr cterm=NONE ctermbg=NONE ctermfg=24
+hi Comment cterm=NONE ctermfg=24
+
+"}}}}
