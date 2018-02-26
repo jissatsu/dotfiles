@@ -8,7 +8,7 @@ table="\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20USAGE:\n  \e[35m-v\e[0m --> edit 
 if [[ !"$#" -eq 0 ]]; then
 	if [[ "$1" == "-v" ]]; then
 		if [[ ${current_dir} != "$USER" ]]; then
-			vim /home/xcvb/.vimrc
+			vim /home/$USER/.vimrc
 		else
 			vim ~/.vimrc
 		fi
