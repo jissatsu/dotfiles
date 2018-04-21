@@ -2,8 +2,8 @@
 
 current_dir=$(basename $PWD)
 
-table="\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20USAGE:\n  \e[35m-v\e[0m --> edit .vimrc file\n
-\e[35m-vc\e[0m --> edit the [v] bash file"
+err(){ echo -e "\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20USAGE:\n  \e[35m-v\e[0m --> edit .vimrc file\n
+\e[35m-vc\e[0m --> edit the [v] bash file" }
 
 if [[ !"$#" -eq 0 ]]; then
 	if [[ "$1" == "-v" ]]; then
@@ -15,7 +15,7 @@ if [[ !"$#" -eq 0 ]]; then
 	elif [[ "$1" == "-vc" ]]; then
 		sudo vim /bin/v
 	elif [ "$1" == "-h" -o "$1" == "--help" ]; then
-		echo -e $table
+		err
 	fi
 else
 	echo "usage: missing argument for 'v'"
