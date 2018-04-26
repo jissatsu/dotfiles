@@ -21,6 +21,12 @@ LIGHSTEELBLUE='\[\033[38;5;189m\]' #147
 
 ENDCOLOR='\[\033[00m\]'
 
+export SYSTEMD_LESS=FRXMK journalctl
+export EDITOR=vim
+export VISUAL=vim
+export PAGER=less 
+set -o notify
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
