@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ ! "$EUID" -eq 0 ]]; then
+	echo "Must run as root";
+	exit 1
+fi
+
+line_num_tcp=$(sudo iptables -nvL --line-numbers | grep -w "tcp dpt:22" | awk '{ print $1 }')
+line_num_udp=$(sudo iptables -nvL --line-numbers | grep -w "udp dpt:22" | awk '{ print $1 }')
+
+if [ "$#" -gt 1 -o "$#" -lt 1 ]; then
+	echo "Usage: `basename $0` options [accept, reject]";
+	exit 1
+fi
+
+case "$1" in
+	"accept_tcp")  echo $(sudo iptables -R INPUT $line_num_tcp -p tcp -m tcp --dport 22 -j ACCEPT);;
+	"accept_udp")  echo $(sudo iptables -R INPUT $line_num_udp -p udp -m udp --dport 22 -j ACCEPT);;
+	"reject_tcp")  echo $(sudo iptables -R INPUT $line_num_tcp -p tcp -m tcp --dport 22 -j REJECT --reject-with icmp-port-unreachable);;
+	"reject_udp")  echo $(sudo iptables -R INPUT $line_num_udp -p udp -m udp --dport 22 -j REJECT --reject-with icmp-port-unreachable);;
+	*)             echo "usage: `basename $0` { invalid option } $1 / options [accept, reject]";;
+esac
