@@ -16,7 +16,7 @@ fi
 case "$1" in
 	"accept_tcp")  echo $(sudo iptables -R INPUT $line_num_tcp -p tcp -m tcp --dport 22 -j ACCEPT);;
 	"accept_udp")  echo $(sudo iptables -R INPUT $line_num_udp -p udp -m udp --dport 22 -j ACCEPT);;
-	"reject_tcp")  echo $(sudo iptables -R INPUT $line_num_tcp -p tcp -m tcp --dport 22 -j REJECT --reject-with icmp-port-unreachable);;
-	"reject_udp")  echo $(sudo iptables -R INPUT $line_num_udp -p udp -m udp --dport 22 -j REJECT --reject-with icmp-port-unreachable);;
+	"drop_tcp")  echo $(sudo iptables -R INPUT $line_num_tcp -p tcp -m tcp --dport 22 -j DROP);;
+	"drop_udp")  echo $(sudo iptables -R INPUT $line_num_udp -p udp -m udp --dport 22 -j DROP);;
 	*)             echo "usage: `basename $0` { invalid option } $1 / options [accept, reject]";;
 esac
