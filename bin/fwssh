@@ -9,7 +9,7 @@ line_num_tcp=$(sudo iptables -nvL --line-numbers | grep -w "tcp dpt:22" | awk '{
 line_num_udp=$(sudo iptables -nvL --line-numbers | grep -w "udp dpt:22" | awk '{ print $1 }')
 
 if [ "$#" -gt 1 -o "$#" -lt 1 ]; then
-	echo "Usage: `basename $0` options [accept, reject]";
+	echo "Usage: `basename $0` options [accept, drop]";
 	exit 1
 fi
 
@@ -18,5 +18,5 @@ case "$1" in
 	"accept_udp")  echo $(sudo iptables -R INPUT $line_num_udp -p udp -m udp --dport 22 -j ACCEPT);;
 	"drop_tcp")  echo $(sudo iptables -R INPUT $line_num_tcp -p tcp -m tcp --dport 22 -j DROP);;
 	"drop_udp")  echo $(sudo iptables -R INPUT $line_num_udp -p udp -m udp --dport 22 -j DROP);;
-	*)             echo "usage: `basename $0` { invalid option } $1 / options [accept, reject]";;
+	*)             echo "usage: `basename $0` { invalid option } $1 / options [accept, drop]";;
 esac
