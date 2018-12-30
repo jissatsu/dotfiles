@@ -28,4 +28,5 @@ if [[ $( find . -type f -name old-mint-logo.png ) ]]; then
 	cp $1 .
 	cp ./`basename $1` ./mint-logo.png
 	rm `basename $1`
+	update-initramfs -u -k all
 fi
