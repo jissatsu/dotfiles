@@ -1,0 +1,29 @@
+#!/bin/bash
+# a script I user to change my booting logo
+
+ROOT_ID=0;
+ARG_ERR=128
+E_NOTROOT=87;
+mint_logo_dir=/usr/share/plymouth/themes/mint-logo
+
+if [[ $UID -ne $ROOT_UID ]]; then
+	echo "Must run as root!";
+	exit $E_NOTROOT;
+fi
+
+if [ $# -ne 1 ]; then
+	echo "Usage: `basename $0` arg1 arg2";
+	exit $ARG_ERR;
+fi
+
+cd $mint_logo_dir
+
+if [[ $( find . -type f -name mint-logo.png ) ]]; then
+	mv mint-logo.png old-mint-logo.png
+fi
+
+if [[ $( find . -type f -name old-mint-logo.png ) ]]; then
+	cp $1 .
+	cp ./`basename $1` ./mint-logo.png
+	rm `basename $1`
+fi
