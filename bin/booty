@@ -9,7 +9,7 @@ E_NOTROOT=87;
 mint_logo_dir=/usr/share/plymouth/themes/mint-logo
 
 if [[ $UID -ne $ROOT_UID ]]; then
-	echo "Must run as root!";
+	echo "Must be run as root!";
 	exit $E_NOTROOT;
 fi
 
