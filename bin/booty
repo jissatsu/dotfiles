@@ -1,5 +1,7 @@
 #!/bin/bash
 # a script I user to change my booting logo
+# the mint-logo16.png file is removed, Im using only the mint-logo.png
+# so whenever I want to change the logo Im just replacing the mint-logo.png file
 
 ROOT_ID=0;
 ARG_ERR=128
