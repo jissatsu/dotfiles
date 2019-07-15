@@ -16,6 +16,9 @@ export PACKS=(
 	p7zip-full
 	git
 	iptables
+	tmux
+	htop
+	code
 )
 
 #
