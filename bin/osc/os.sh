@@ -19,6 +19,8 @@ export PACKS=(
 	tmux
 	htop
 	code
+	npm
+	nodejs-legacy
 )
 
 #
