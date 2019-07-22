@@ -33,7 +33,7 @@ abort_root(){
 #
 # set the apache listening port in `/etc/apache2/ports.conf`
 apache_set_listen_port(){
-	pconf=$(cat ${APACHEPC})
+	local pconf=$(cat ${APACHEPC})
 	echo "$pconf" | sed -i "s/Listen 80/Listen $1/g" ${APACHEPC}
 }
 
@@ -59,7 +59,7 @@ mysql_db_install(){
 	sudo mysql_secure_installation
 	read -p "$(echo -e '\e[33mSet password for mysql root user -> \e[0m')" pass
 	
-	plen=${#pass}
+	local plen=${#pass}
 	if [ $plen -le 5 ]; then
 		echo -e "\e[31m\nMySql root password si too weak!\n\e[0m"
 		exit 1
@@ -70,8 +70,8 @@ mysql_db_install(){
 	read -p "$(echo -e '\e[33mCreate a new MySql user -> \e[0m')" user
 	read -p "$(echo -e '\e[33mPassword for the new user -> \e[0m')" pass
 
-	ulen=${#user}
-	plen=${#pass}
+	local ulen=${#user}
+	local plen=${#pass}
 	if [ $plen -gt 5 -a $ulen -gt 1 ]; then
 		sudo mysql -u root -p --execute="CREATE USER '$user'@'localhost' IDENTIFIED BY '$pass';"
 		sudo mysql -u root -p --execute="GRANT ALL PRIVILEGES ON *.* TO '$user'@'localhost' WITH GRANT OPTION;"
