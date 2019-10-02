@@ -12,7 +12,10 @@ export PACKS=(
 	vim
 	g++
 	wireshark-qt
+	libpcap-dev
+	libnet-dev
 	nmap
+	aircrack-ng
 	p7zip-full
 	git
 	iptables
@@ -21,6 +24,7 @@ export PACKS=(
 	code
 	npm
 	nodejs-legacy
+	mailutils
 )
 
 #
