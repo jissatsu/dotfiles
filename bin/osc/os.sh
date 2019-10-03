@@ -25,6 +25,7 @@ export PACKS=(
 	npm
 	nodejs-legacy
 	mailutils
+	binwalk
 )
 
 #
