@@ -11,6 +11,7 @@ export PACKS=(
 	whatweb
 	vim
 	g++
+	nasm
 	wireshark-qt
 	libpcap-dev
 	libnet-dev
