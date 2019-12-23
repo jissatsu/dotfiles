@@ -13,6 +13,7 @@ export PACKS=(
 	g++
 	gcc-multilib
 	nasm
+	yasm
 	wireshark-qt
 	libpcap-dev
 	libnet-dev
