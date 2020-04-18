@@ -111,6 +111,12 @@ set_boot_logo(){
 	return 0
 }
 
+echo -e "\n\e[33mInstalling arpnoid\e[0m\n"
+git clone https://github.com/sumx86/arpnoid.git
+cd arpnoid
+make all
+sudo cp arpnoid /usr/bin/ && chmod +x /usr/bin/arpnoid
+
 
 [ $UID -ne $ROOT_ID ] && abort_root
 sudo apt update && sudo chmod +x /etc/rc.local
